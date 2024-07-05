@@ -1,9 +1,15 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3CA660; opacity: 0.85;">
     <div class="container">
+     <% if user_signed_in? %>
+      <%= link_to user_path(current_user), class: "navbar-brand" do %>
+       <span class="site-title text-white">Rela×Share</span>
+      <% end %>
+     <% else %>
       <a class="navbar-brand" href="/">
-        <span class="site-title text-white">Rela×Share</span>
+       <span class="site-title text-white">Rela×Share</span>
       </a>
+     <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

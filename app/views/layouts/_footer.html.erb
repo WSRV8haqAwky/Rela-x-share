@@ -3,8 +3,15 @@
     <div class='row no-gutters'>
       <div class="col-md-4">
         <p>いやしを求める人のためのSNS</p>
-        <%= link_to "/" do %>
-        <h2 class="site-title text-white">Rela×Share</h2>
+
+        <% if user_signed_in? %>
+          <%= link_to user_path(current_user) do %>
+            <h2 class="site-title text-white">Rela×Share</h2>
+          <% end %>
+        <% else %>
+          <%= link_to "/" do %>
+            <h2 class="site-title text-white">Rela×Share</h2>
+          <% end %>
         <% end %>
       </div>
       <div class="col-md-8">
