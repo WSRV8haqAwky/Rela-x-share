@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <div class="search_form">
+  <div class="collapse", id="search_form">
     <%= form_with url: search_path, local: true, method: :get, class:"py-3 text-center" do |f| %>
       <%= f.text_field :word %>
       <%= f.select:range, options_for_select([["ユーザー",'User'],["投稿",'PostRelax']]) %>

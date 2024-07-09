@@ -17,12 +17,16 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
+            <li onclick="$('#search_form').collapse('toggle')", class="nav-link text-white">
+             <i class="fas fa-search"></i> 検索
+          　</li>
             <li>
              <%= link_to user_path(current_user), class: "nav-link text-white" do %>
               <i class="fas fa-home"></i> ホーム
              <% end %>
             <!-- ログイン後のHomeリンクは未実装です。自分で調べて実装してみましょう -->
             </li>
+
             <li>
              <%= link_to users_path, class: "nav-link text-white" do %>
               <i class="fas fa-users"></i> ユーザー
@@ -35,7 +39,6 @@
              <% end %>
             <!-- ログイン後のBooksリンクは未実装です。自分で調べて実装してみましょう -->
             </li>
-
             <li>
              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-white" do %>
               <i class="fas fa-sign-out-alt"></i> ログアウト
