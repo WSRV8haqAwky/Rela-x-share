@@ -13,7 +13,8 @@
                   <div class="col-9">
                     <p class="card-text"><%= link_to post_relax.caption, post_relax_path(post_relax.id),class:"text-dark" %></p>
                     <span><i class="fas fa-user"></i><%= post_relax.user.name %> ｜ </span>
-                    <span><%= "#{post_relax.post_comments.count} コメント" %></span>
+                    <span><%= "#{post_relax.post_comments.count} コメント" %> | </span>
+                    <span><i class="far fa-star"></i> <%=  post_relax.favorites.count %></span>
                   </div>
                 </div>
               </div>
