@@ -7,7 +7,7 @@
 
         <% if @post_relax.user == current_user %>
           <div class='row mt-3'>
-            <%= link_to new_post_relax_path(@post_relax), class: "btn btn-success btn-block" do %>
+            <%= link_to new_post_relax_path(@post_relax), class: "btn btn-success btn-block",style:"opacity: 0.8;" do %>
               <i class="fas fa-plus"></i> 新規投稿
             <% end %>
           </div>
@@ -67,7 +67,7 @@
                 <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class:"form-control" %>
               </div>
               <div class="form-group">
-                <%= f.submit "送信する", class:"btn btn-success btn-block" %>
+                <%= f.submit "送信する", class:"btn btn-success btn-block",style:"opacity: 0.8;" %>
               </div>
             <% end %>
           </div>

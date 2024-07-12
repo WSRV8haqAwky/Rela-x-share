@@ -9,7 +9,16 @@
             <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "default-image.jpg", class:"rounded-circle" %> <!-- 固定値 -->
           </tr>
           <tr>
-            <th><%= @user.name %></th>  <!-- 固定値 -->
+            <th><%= @user.name %></th>
+            <th>
+              <% unless @user == current_user %>
+                <% if current_user.following?(@user) %>
+                  <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete,class:"btn btn-success rounded-pill" ,style:"opacity: 0.8;" %>
+                <% else %>
+                  <%= link_to "フォロー", user_relationships_path(@user.id), method: :post,class:"btn btn-outline-success rounded-pill",style:"opacity: 0.8;" %>
+                <% end %>
+              <% end %>
+            </th><!-- 固定値 -->
           </tr>
           <tr>
             <td>フォロー: <%= @user.followings.count %></td>
@@ -20,13 +29,7 @@
           </tr>
 
         </table>
-        <% if @user != current_user %>
-          <% if current_user.following?(@user) %>
-            <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete %>
-          <% else %>
-            <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
-          <% end %>
-        <% end %>
+
         <div class='row'>
           <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
             <i class="fas fa-user-cog"></i> 編集
@@ -34,7 +37,7 @@
         </div>
 
     　　  　<div class='row'>
-            <%= link_to new_post_relax_path(@post_relax), class: "btn btn-success btn-block mb-3" do %>
+            <%= link_to new_post_relax_path(@post_relax), class: "btn btn-success btn-block mb-3",style:"opacity: 0.8;" do %>
               <i class="fas fa-plus"></i> 新規投稿
             <% end %>
           </div>
