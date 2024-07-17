@@ -2,7 +2,7 @@
 
     <div class='container px-5 px-sm-0'>
       <div class='row'>
-        <div class='col-md-3'>
+        <div class='col-md-4'>
           <h2 class="mt-3">プロフィール</h2>
         <table class='table'>
           <tr>
@@ -27,7 +27,24 @@
           <tr>
             <td><%= @user.introduction %></td>  <!-- 固定値 -->
           </tr>
-
+          <tr>
+            <td>
+              <% unless @user.id == current_user.id %>
+                <% if (current_user.following? @user) && (@user.following? current_user)  %>
+                <% if @isRoom == true %>
+                  <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary">チャットへ</a>
+                <% else %>
+                  <%= form_for @room do |f| %>
+                    <%= fields_for @entry do |e| %>
+                      <%= e.hidden_field :user_id, value: @user.id %>
+                    <% end %>
+                    <%= f.submit "チャットを始める", class:"btn btn-primary user-show-chat"%>
+                  <% end %>
+                <% end %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
         </table>
 
         <div class='row'>
@@ -44,7 +61,7 @@
           <!-- form_withを用いて新規投稿フォームを作成しましょう。 -->
         </div>
 
-        <div class='col-md-8 offset-md-1'>
+        <div class='col-md-7 offset-md-1'>
           <h2 class="mt-3"><%= @user.name %>さんの投稿</h2>
           <!-- 投稿した書籍一覧表示を作成しましょう。 -->
           <%= render 'post_relaxes/list', post_relaxes: @post_relaxes %>
