@@ -1,71 +1,100 @@
 <main>
 
-    <div class='container px-5 px-sm-0'>
-      <div class='row'>
-        <div class='col-md-4'>
-          <h2 class="mt-3">プロフィール</h2>
-        <table class='table'>
-          <tr>
-            <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "default-image.jpg", class:"rounded-circle" %> <!-- 固定値 -->
-          </tr>
-          <tr>
-            <th><%= @user.name %></th>
-            <th>
-              <% unless @user == current_user %>
-                <% if current_user.following?(@user) %>
-                  <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete,class:"btn btn-success rounded-pill" ,style:"opacity: 0.8;" %>
-                <% else %>
-                  <%= link_to "フォロー", user_relationships_path(@user.id), method: :post,class:"btn btn-outline-success rounded-pill",style:"opacity: 0.8;" %>
-                <% end %>
-              <% end %>
-            </th><!-- 固定値 -->
-          </tr>
-          <tr>
-            <td>フォロー: <%= @user.followings.count %></td>
-            <td>フォロワー: <%= @user.followers.count %></td>
-          </tr>
-          <tr>
-            <td><%= @user.introduction %></td>  <!-- 固定値 -->
-          </tr>
-          <tr>
-            <td>
-              <% unless @user.id == current_user.id %>
-                <% if (current_user.following? @user) && (@user.following? current_user)  %>
-                <% if @isRoom == true %>
-                  <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary">チャットへ</a>
-                <% else %>
-                  <%= form_for @room do |f| %>
-                    <%= fields_for @entry do |e| %>
-                      <%= e.hidden_field :user_id, value: @user.id %>
-                    <% end %>
-                    <%= f.submit "チャットを始める", class:"btn btn-primary user-show-chat"%>
-                  <% end %>
-                <% end %>
-                <% end %>
-              <% end %>
-            </td>
-          </tr>
-        </table>
+  <div class='container px-5 px-sm-0'>
+    <div class='row'>
+      <div class='col-md-3'>
+        <h2 class="mt-3"><%= @user.name %></h2>
 
-        <div class='row'>
-          <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
-            <i class="fas fa-user-cog"></i> 編集
+      <table class='table'>
+        <tr>
+          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "default-image.jpg", class:"rounded-circle" %>
+         <!-- 固定値 -->
+        </tr>
+        <div class="text-right mb-3">
+          <% unless @user == current_user %>
+            <% if current_user.following?(@user) %>
+              <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete,class:"btn btn-success rounded-pill" ,style:"opacity: 0.8;" %>
+            <% else %>
+              <%= link_to "フォロー", user_relationships_path(@user.id), method: :post,class:"btn btn-outline-success rounded-pill",style:"opacity: 0.8;" %>
+            <% end %>
           <% end %>
         </div>
+        <tr>
+          <td>フォロー: <%= @user.followings.count %></td>
+          <td>フォロワー: <%= @user.followers.count %></td>
+        </tr>
+        <tr>
+          <td><%= @user.introduction %></td>  <!-- 固定値 -->
+        </tr>
+      </table>
+      <div class="row my-2">
+        <% unless @user.id == current_user.id %>
+          <% if (current_user.following? @user) && (@user.following? current_user)  %>
+          <% if @isRoom == true %>
+            <a href="/rooms/<%= @roomId %>" class="btn btn-outline-success btn-block rounded-pill" style="opacity: 0.8;">チャットへ</a>
+          <% else %>
+            <%= form_for @room do |f| %>
+              <%= fields_for @entry do |e| %>
+                <%= e.hidden_field :user_id, value: @user.id %>
+              <% end %>
+              <%= f.submit "チャットを始める", class:"btn btn-outline-success btn-block rounded-pill",style:"opacity: 0.8;" %>
+            <% end %>
+          <% end %>
+          <% end %>
+        <% end %>
+      </div>
 
-    　　  　<div class='row'>
-            <%= link_to new_post_relax_path(@post_relax), class: "btn btn-success btn-block mb-3",style:"opacity: 0.8;" do %>
-              <i class="fas fa-plus"></i> 新規投稿
+      <div class='row'>
+        <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i> 編集
+        <% end %>
+      </div>
+
+  　　  　<div class='row'>
+          <%= link_to new_post_relax_path(@post_relax), class: "btn btn-success btn-block mb-3",style:"opacity: 0.8;" do %>
+            <i class="fas fa-plus"></i> 新規投稿
+          <% end %>
+        </div>
+        <!-- form_withを用いて新規投稿フォームを作成しましょう。 -->
+      </div>
+
+      <div class='col-md-8 offset-md-1'>
+        <h2 class="mt-3">投稿</h2>
+        <!-- 投稿した書籍一覧表示を作成しましょう。 -->
+        <%= render 'post_relaxes/list', post_relaxes: @post_relaxes %>
+
+        <h2 class="mt-3">いいねした投稿</h2>
+
+        <div class="card-list-container">
+          <div class="row">
+            <% @liked_posts.each do |post_relax| %>
+              <div class="col-lg-6 col-md-8 col-sm-10 mb-5">
+                <div class="card mx-auto shadow-lg h-100">
+                  <%= attachment_image_tag post_relax, :image, class:"card-img-top",fallback: "default-image.jpg"; %>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-3">
+                          <%= attachment_image_tag post_relax.user, :profile_image, :fill, 60, 60, fallback: "default-image.jpg", size: '60x60', class:"mt-3 rounded-circle"; %>
+                        </div>
+                        <div class="col-9">
+                          <p class="card-text"><%= link_to post_relax.caption, post_relax_path(post_relax.id),class:"text-dark" %></p>
+                          <span><i class="fas fa-user"></i><%= post_relax.user.name %> ｜ </span>
+                          <span><%= "#{post_relax.post_comments.count} コメント" %> | </span>
+                          <span><i class="far fa-star"></i> <%=  post_relax.favorites.count %></span>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
             <% end %>
           </div>
-          <!-- form_withを用いて新規投稿フォームを作成しましょう。 -->
         </div>
 
-        <div class='col-md-7 offset-md-1'>
-          <h2 class="mt-3"><%= @user.name %>さんの投稿</h2>
-          <!-- 投稿した書籍一覧表示を作成しましょう。 -->
-          <%= render 'post_relaxes/list', post_relaxes: @post_relaxes %>
-        </div>
+
       </div>
+    </div>
+    <div>
+  　　  <%= paginate @post_relaxes %>
+ 　  </div>
   </div>
 </main>

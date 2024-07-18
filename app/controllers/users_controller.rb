@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post_relaxes = PostRelax.page(params[:page]).where(user_id: @user.id).reverse_order
+    @liked_posts = PostRelax.liked_posts(current_user,params[:page], 6)
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     if @user.id == current_user.id
@@ -47,6 +48,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def liked_posts
+
+  end
 
   private
 
