@@ -59,42 +59,46 @@
       </div>
 
       <div class='col-md-8 offset-md-1'>
-        <h2 class="mt-3">投稿</h2>
-        <!-- 投稿した書籍一覧表示を作成しましょう。 -->
-        <%= render 'post_relaxes/list', post_relaxes: @post_relaxes %>
+        <ul class="nav nav-tabs" id="tabs">
+          <li class="nav-item active">投稿</li>
+          <li>いいね</li>
+        </ul>
 
-        <h2 class="mt-3">いいねした投稿</h2>
-
-        <div class="card-list-container">
-          <div class="row">
-            <% @liked_posts.each do |post_relax| %>
-              <div class="col-lg-6 col-md-8 col-sm-10 mb-5">
-                <div class="card mx-auto shadow-lg h-100">
-                  <%= attachment_image_tag post_relax, :image, class:"card-img-top",fallback: "default-image.jpg"; %>
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-3">
-                          <%= attachment_image_tag post_relax.user, :profile_image, :fill, 60, 60, fallback: "default-image.jpg", size: '60x60', class:"mt-3 rounded-circle"; %>
+　　　　<ul id="tab-contents">
+　　　　  <div class="tab_contents_item active">
+　　　　    <%= render 'post_relaxes/list', post_relaxes: @post_relaxes %>
+　　　　  </div>
+　　　　  <div class="tab_contents_item">
+　　　　    <div class="card-list-container">
+              <div class="row">
+                <% @liked_posts.each do |post_relax| %>
+                  <div class="col-lg-6 col-md-8 col-sm-10 mb-5">
+                    <div class="card mx-auto shadow-lg h-100">
+                      <%= attachment_image_tag post_relax, :image, class:"card-img-top",fallback: "default-image.jpg"; %>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-3">
+                              <%= attachment_image_tag post_relax.user, :profile_image, :fill, 60, 60, fallback: "default-image.jpg", size: '60x60', class:"mt-3 rounded-circle"; %>
+                            </div>
+                            <div class="col-9">
+                              <p class="card-text"><%= link_to post_relax.caption, post_relax_path(post_relax.id),class:"text-dark" %></p>
+                              <span><i class="fas fa-user"></i><%= post_relax.user.name %> ｜ </span>
+                              <span><%= "#{post_relax.post_comments.count} コメント" %> | </span>
+                              <span><i class="far fa-star"></i> <%=  post_relax.favorites.count %></span>
+                            </div>
+                          </div>
                         </div>
-                        <div class="col-9">
-                          <p class="card-text"><%= link_to post_relax.caption, post_relax_path(post_relax.id),class:"text-dark" %></p>
-                          <span><i class="fas fa-user"></i><%= post_relax.user.name %> ｜ </span>
-                          <span><%= "#{post_relax.post_comments.count} コメント" %> | </span>
-                          <span><i class="far fa-star"></i> <%=  post_relax.favorites.count %></span>
-                        </div>
-                      </div>
                     </div>
-                </div>
+                  </div>
+                <% end %>
               </div>
-            <% end %>
+              <div>
+              　<%= paginate @liked_posts %>
+              </div>
+            </div>
           </div>
-        </div>
-
-
+        </ul>
       </div>
     </div>
-    <div>
-  　　  <%= paginate @post_relaxes %>
- 　  </div>
   </div>
 </main>
