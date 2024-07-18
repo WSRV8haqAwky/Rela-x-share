@@ -23,4 +23,12 @@ class PostRelax < ApplicationRecord
       @post_relax = PostRelax.all
     end
   end
+
+  def self.liked_posts(user, page,per_page)
+    includes(:favorites)
+    .where(favorites: { user_id: user.id })
+    .order(created_at: :desc)
+    .page(page)
+    .per(per_page)
+  end
 end
