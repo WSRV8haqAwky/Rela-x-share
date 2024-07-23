@@ -17,3 +17,14 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(function(){
+  var tab = $('#tabs > li'),
+      content = $('.tab_contents_item');
+
+  tab.on('click',function(){
+    var idx = tab.index($(this));
+    tab.removeClass("active").eq(idx).addClass("active");
+    content.removeClass("active").eq(idx).addClass("active");
+  });
+});
