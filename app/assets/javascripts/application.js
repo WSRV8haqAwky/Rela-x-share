@@ -18,7 +18,7 @@
 //= require_tree .
 
 $(function(){
-  var tab = $('#tabs > li'),
+  var tab = $('#tabs > li >a'),
       content = $('.tab_contents_item');
 
   tab.on('click',function(){
