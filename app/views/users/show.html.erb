@@ -58,7 +58,7 @@
         <!-- form_withを用いて新規投稿フォームを作成しましょう。 -->
       </div>
 
-      <div class='col-lg-8 offset-md-1'>
+      <div class='col-lg-8 offset-lg-1'>
         <ul class="nav nav-tabs nav-fill mt-3" id="myTab" role=”tablist”>
           <li class="nav-item"><a href="#post-list" class="nav-link active" role=”tab” data-toggle="tab">投稿</a></li>
           <li class="nav-item"><a href="#like-list" class="nav-link" role=”tab” data-toggle="tab">いいね</a></li>
@@ -72,7 +72,7 @@
 　　　　    <div class="card-list-container">
               <div class="row">
                 <% @liked_posts.each do |post_relax| %>
-                  <div class="col-lg-6 col-md-8 col-sm-10 mb-5">
+                  <div class="col-lg-6 mb-5">
                     <div class="card mx-auto shadow-lg h-100">
                       <%= attachment_image_tag post_relax, :image, class:"card-img-top",fallback: "default-image.jpg"; %>
                         <div class="card-body">
