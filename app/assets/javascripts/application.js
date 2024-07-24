@@ -17,13 +17,3 @@
 //= require activestorage
 //= require_tree .
 
-$(function(){
-  var tab = $('#tabs > li >a'),
-      content = $('.tab_contents_item');
-
-  tab.on('click',function(){
-    var idx = tab.index($(this));
-    tab.removeClass("active").eq(idx).addClass("active");
-    content.removeClass("active").eq(idx).addClass("active");
-  });
-});
