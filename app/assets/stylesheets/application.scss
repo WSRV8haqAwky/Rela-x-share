@@ -28,8 +28,8 @@
   text-decoration: none;
 }
 
-.pagination {
-  justify-content: center;
+#search-link {
+  cursor: pointer;
 }
 
 #tabs {
@@ -41,4 +41,8 @@
 }
 .tab_contents_item.active {
   display: block;
+}
+
+.pagination {
+  justify-content: center;
 }
