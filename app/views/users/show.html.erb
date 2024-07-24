@@ -59,16 +59,16 @@
       </div>
 
       <div class='col-md-8 offset-md-1'>
-        <ul class="nav nav-tabs mt-3" id="tabs">
-          <li class="nav-item"><a class="nav-link active">投稿</a></li>
-          <li class="nav-item"><a class="nav-link">いいね</a></li>
+        <ul class="nav nav-tabs mt-3" id="myTab" role=”tablist”>
+          <li class="nav-item"><a href="#post-list" class="nav-link active" role=”tab” data-toggle="tab">投稿</a></li>
+          <li class="nav-item"><a href="#like-list"class="nav-link" role=”tab” data-toggle="tab">いいね</a></li>
         </ul>
 
-　　　　<ul id="tab-contents">
-　　　　  <div class="tab_contents_item active">
+　　　　<div class="tab-content">
+　　　　  <div role=”tabpanel” class="tab-pane show active" id="post-list">
 　　　　    <%= render 'post_relaxes/list', post_relaxes: @post_relaxes %>
 　　　　  </div>
-　　　　  <div class="tab_contents_item">
+　　　　  <div role=”tabpanel” class="tab-pane" id="like-list">
 　　　　    <div class="card-list-container">
               <div class="row">
                 <% @liked_posts.each do |post_relax| %>
@@ -97,7 +97,7 @@
               </div>
             </div>
           </div>
-        </ul>
+        </div>
       </div>
     </div>
   </div>
