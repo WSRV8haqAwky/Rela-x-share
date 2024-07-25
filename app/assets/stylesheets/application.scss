@@ -32,3 +32,13 @@
   justify-content: center;
 }
 
+#tabs {
+  cursor:pointer;
+}
+
+.tab_contents_item {
+  display: none;
+}
+.tab_contents_item.active {
+  display: block;
+}

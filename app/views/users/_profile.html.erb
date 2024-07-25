@@ -5,7 +5,8 @@
             <%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "default-image.jpg", class:"rounded-circle" %> <!-- 固定値 -->
           </tr>
           <tr>
-            <th><%= user.name %></th>  <!-- 固定値 -->
+            <td>フォロー: <%= user.followings.count %></td>
+            <td>フォロワー: <%= user.followers.count %></td>
           </tr>
           <tr>
             <td><%= user.introduction %></td>  <!-- 固定値 -->
