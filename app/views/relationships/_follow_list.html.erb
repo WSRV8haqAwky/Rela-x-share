@@ -1,7 +1,7 @@
-<% if @users.exists? %>
+<% if users.exists? %>
   <div class="card-list-container">
     <div class="row">
-      <% @users.each do |user| %>
+      <% users.each do |user| %>
         <div class="col-lg-6 mb-5">
           <div class="card mx-auto shadow-lg h-100">
             <div class="card-body">
@@ -27,4 +27,4 @@
   <p>ユーザーはいません</p>
 <% end %>
 
-<%= link_to "戻る", user_path(@user) %>
+
