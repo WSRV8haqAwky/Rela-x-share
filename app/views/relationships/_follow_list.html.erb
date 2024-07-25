@@ -1,8 +1,8 @@
-<% if @users.exists? %>
+<% if users.exists? %>
   <div class="card-list-container">
     <div class="row">
-      <% @users.each do |user| %>
-        <div class="col-lg-6 col-md-8 col-sm-10 mb-5">
+      <% users.each do |user| %>
+        <div class="col-lg-6 mb-5">
           <div class="card mx-auto shadow-lg h-100">
             <div class="card-body">
               <div class="row">
