@@ -8,8 +8,16 @@
             <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "default-image.jpg", class:"rounded-circle" %> <!-- 固定値 -->
           </tr>
           <tr>
-            <td>フォロー: <%= @user.followings.count %></td>
-            <td>フォロワー: <%= @user.followers.count %></td>
+            <td>
+              <%= link_to user_followings_path(@user.id),class:"text-dark" do %>
+                フォロー: <%= @user.followings.count %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to user_followers_path(@user.id),class:"text-dark" do %>
+                フォロワー: <%= @user.followers.count %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td><%= @user.introduction %></td>  <!-- 固定値 -->
