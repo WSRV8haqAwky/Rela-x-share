@@ -10,14 +10,17 @@
       <% @messages.each do |m| %>
         <% if @myUserId == m.user.id %>
           <div class="right-container d-flex align-items-center justify-content-end">
+
             <p class="mr-2 bg-secondary p-3 rounded" style="opacity: 0.8;"><span class="text-white"><%= m.message %></span></p>
             <%= attachment_image_tag m.user, :profile_image, :fill, 80, 80, fallback: "default-image.jpg", size:'80x80', class:"rounded-circle" %>
           </div>
+           <div class="text-right"><b><%= m.user.name %></b></div>
         <% else %>
           <div class="left-container d-flex align-items-center">
             <%= attachment_image_tag m.user, :profile_image, :fill, 80, 80, fallback: "default-image.jpg", size:'80x80', class:"rounded-circle" %>
             <p class="ml-2 bg-success p-3 rounded" style="opacity: 0.8;"><span class="text-white"><%= m.message %></span></p>
           </div>
+          <div class="text-left"><b><%= m.user.name %></b></div>
         <% end %>
       <% end %>
     <% end %>
