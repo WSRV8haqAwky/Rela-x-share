@@ -1,21 +1,31 @@
-<% @entries.each do |e| %>
-  <% if @myUserId != e.user.id %>
-      <h2><%= e.user.name %>さんとのトークルーム</h2>
-    </div>
+<div class='container px-5 px-sm-0'>
+  <% @entries.each do |e| %>
+    <% if @myUserId != e.user.id %>
+        <h2><%= e.user.name %>さんとのトークルーム</h2>
+    <% end %>
   <% end %>
-<% end %>
-<%= link_to "ユーザー一覧に戻る", users_path %>
+  <%= link_to "ユーザー一覧に戻る", users_path, class:"my-2" %>
 
-   <% if @messages.present? %>
-     <% @messages.each do |m| %>
-       <% @myUserId == m.user.id  %>
-       <p><%= m.user.name %></p>
-         <p><%= m.message %></p>
-     <% end %>
-   <% end %>
+    <% if @messages.present? %>
+      <% @messages.each do |m| %>
+        <% if @myUserId == m.user.id %>
+          <div class="right-container d-flex align-items-center justify-content-end">
+            <p class="mr-2 bg-secondary p-3 rounded" style="opacity: 0.8;"><span class="text-white"><%= m.message %></span></p>
+            <%= attachment_image_tag m.user, :profile_image, :fill, 80, 80, fallback: "default-image.jpg", size:'80x80', class:"rounded-circle" %>
+          </div>
+        <% else %>
+          <div class="left-container d-flex align-items-center">
+            <%= attachment_image_tag m.user, :profile_image, :fill, 80, 80, fallback: "default-image.jpg", size:'80x80', class:"rounded-circle" %>
+            <p class="ml-2 bg-success p-3 rounded" style="opacity: 0.8;"><span class="text-white"><%= m.message %></span></p>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
 
-<%= form_for @message do |f| %>
-   <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-text-field" %>
+    <%= form_for @message do |f| %>
+      <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-text-field" %>
       <%= f.hidden_field :room_id, value: @room.id %>
-        <%= f.submit "投稿",class: 'form-submit'%>
- <% end %>
+      <%= f.submit "投稿",class: 'form-submit'%>
+    <% end %>
+
+</div>

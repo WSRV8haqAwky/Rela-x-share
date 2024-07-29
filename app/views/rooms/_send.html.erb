@@ -1,0 +1,15 @@
+  <% if messages.present? %>
+      <% messages.each do |m| %>
+        <% if myUserId == m.user.id %>
+          <div class="left-container d-flex align-items-center">
+            <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "default-image.jpg", class:"rounded-circle" %>
+            <p class="ml-2 bg-secondary p-3 rounded" style="opacity: 0.8;"><span class="text-white"><%= m.message %></span></p>
+          </div>
+        <% else %>
+          <div class="right-container d-flex align-items-center justify-content-end">
+             <p class="mr-2 bg-success p-3 rounded" style="opacity: 0.8;"><span class="text-white"><%= m.message %></span></p>
+             <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "default-image.jpg", class:"rounded-circle" %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>

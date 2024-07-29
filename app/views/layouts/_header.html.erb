@@ -18,7 +18,7 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li onclick="$('#search_form').collapse('toggle')", class="nav-link text-white">
-             <i class="fas fa-search"></i> 検索
+             <a id="search-link"><i class="fas fa-search"></i> 検索</a>
           　</li>
             <li>
              <%= link_to user_path(current_user), class: "nav-link text-white" do %>

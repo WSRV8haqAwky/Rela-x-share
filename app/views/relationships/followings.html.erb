@@ -1,8 +1,10 @@
 <main>
   <div class='container px-5 px-sm-0'>
-    <div class='col-md-8 offset-md-1'>
+    <div class='col-md-10 offset-md-1'>
       <h2 class="my-3">フォロー中</h2>
-      <%= render 'relationships/follow_list' %>
+      <%= render 'relationships/follow_list', users: @users %>
+      <%=link_to "フォロワー", user_followers_path %> |
+      <%= link_to "戻る", user_path(@user) %>
     </div>
   </div>
 </main>
