@@ -47,6 +47,14 @@
   justify-content: center;
 }
 
+#photo {
+  display: none;
+}
+
+.m-modalLink {
+  cursor: pointer;
+}
+
 .overlay {
   display: none;
   position: fixed;
