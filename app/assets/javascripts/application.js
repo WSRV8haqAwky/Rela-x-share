@@ -18,24 +18,6 @@
 //= require_tree .
 
 $(function(){
-
-	let photo = $('#photo'); //画像のセレクタ
-
-	//画像がフェードインする
-	function open(){
-		photo.fadeIn(3000, 'swing', function(){ setTimeout(close, 3000); });
-	};
-
-	//画像がフェードアウトする
-	function close(){
-		photo.fadeOut(1500, 'swing', function(){ setTimeout(open, 1500); });
-	};
-
-	open();
-
-});
-
-$(function(){
     $(".js-modalWindow").click(function(){
         $("body").append("<div class='overlay'></div>");
         $(".overlay").fadeIn(300);
