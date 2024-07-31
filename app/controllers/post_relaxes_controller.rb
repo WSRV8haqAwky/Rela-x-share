@@ -16,7 +16,13 @@ class PostRelaxesController < ApplicationController
   end
 
   def index
-    @post_relaxes = PostRelax.page(params[:page]).reverse_order
+    if params[:latest]
+      @post_relaxes = PostRelax.page(params[:page]).latest
+    elsif params[:old]
+      @post_relaxes = PostRelax.page(params[:page]).old
+    else
+      @post_relaxes = PostRelax.page(params[:page]).reverse_order
+    end
     @user = current_user
   end
 
