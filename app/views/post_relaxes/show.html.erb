@@ -1,5 +1,5 @@
  <main>
-  <p id="notice" class="alert alert-success"><%= flash[:notice] %></p>
+  <p id="notice"><%= flash[:notice] %></p>
   <div class='container px-5 px-sm-0'>
     <div class='row'>
       <div class='col-lg-3'>
@@ -39,7 +39,7 @@
 
 
               <div class="card-footer">
-                <span class="text-secondary"><%= @post_relax.created_at.strftime('%Y/%m/%d') %> 投稿 ｜</span>
+                <span class="text-secondary"><%= @post_relax.created_at.strftime('%Y/%m/%d %R') %> 投稿 ｜</span>
                 <% if @post_relax.favorited_by?(current_user) %>
                   <span>
                     <%= link_to post_relax_favorites_path(@post_relax), method: :delete do %>
@@ -86,7 +86,7 @@
                           <%= attachment_image_tag post_comment.user, :profile_image, :fill, 80, 80, fallback: "default-image.jpg",size:'80x80', class:"rounded-circle" %>
                         <% end %>
                           <br>
-                           <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+                           <%= post_comment.created_at.strftime('%Y/%m/%d %R') %>
                       </td>
                       <td>
                          <b><%= post_comment.user.name %></b>

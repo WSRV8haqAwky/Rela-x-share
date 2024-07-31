@@ -15,6 +15,7 @@
                     <span><i class="fas fa-user"></i><%= post_relax.user.name %> ｜ </span>
                     <span><%= "#{post_relax.post_comments.count} コメント" %> | </span>
                     <span><i class="far fa-star"></i> <%=  post_relax.favorites.count %></span>
+                     <p class="text-secondary"><%= post_relax.created_at.strftime('%Y/%m/%d %R') %> 投稿</p>
                   </div>
                 </div>
               </div>
