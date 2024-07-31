@@ -9,9 +9,7 @@
       <%= link_to user_followings_path(user.id),class:"text-dark" do %>
         フォロー: <%= user.followings.count %>
       <% end %>
-    </td>
-    <td>
-      <%= link_to user_followers_path(user.id),class:"text-dark" do %>
+      <%= link_to user_followers_path(user.id),class:"text-dark ml-5" do %>
         フォロワー: <%= user.followers.count %>
       <% end %>
     </td>
