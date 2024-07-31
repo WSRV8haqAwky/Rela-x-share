@@ -20,6 +20,10 @@ class PostRelaxesController < ApplicationController
       @post_relaxes = PostRelax.page(params[:page]).latest
     elsif params[:old]
       @post_relaxes = PostRelax.page(params[:page]).old
+    elsif params[:order_by_favorite_count]
+      @post_relaxes = PostRelax.page(params[:page]).order_by_favorite_count
+    elsif params[:reverse_order_by_favorite_count]
+      @post_relaxes = PostRelax.page(params[:page]).reverse_order_by_favorite_count
     else
       @post_relaxes = PostRelax.page(params[:page]).reverse_order
     end

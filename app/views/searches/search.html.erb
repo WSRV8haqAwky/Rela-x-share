@@ -1,10 +1,10 @@
-<div class='col-md-8 offset-md-2'>
+<div class='container px-5 px-sm-0'>
   <h2>検索結果</h2>
   <div class="card-list-container">
     <% if @range == "User" %>
       <div class="row">
         <% @users.each do |user| %>
-          <div class="col-lg-6 col-md-8 col-sm-10 mb-5">
+          <div class="col-lg-5 offset-lg-2 mb-5">
             <div class="card mx-auto shadow-lg h-100">
               <div class="card-body">
                 <div class="row">
@@ -29,7 +29,7 @@
     <% else %>
       <div class="row">
         <% @post_relaxes.each do |post_relax| %>
-          <div class="col-lg-6 col-md-8 col-sm-10 mb-5">
+          <div class="col-lg-6  mb-5">
             <div class="card mx-auto shadow-lg h-100">
               <%= attachment_image_tag post_relax, :image, class:"card-img-top",fallback: "default-image.jpg"; %>
                 <div class="card-body">

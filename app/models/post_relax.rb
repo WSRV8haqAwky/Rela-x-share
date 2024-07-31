@@ -3,7 +3,6 @@ class PostRelax < ApplicationRecord
   attachment :image
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :favorited_users, through: :favorites, source: :user
 
   validates :caption, presence: true, length: { maximum: 200 }
 
@@ -35,4 +34,28 @@ class PostRelax < ApplicationRecord
 
   scope :latest, -> { order(created_at: :desc) }  #desc = 降順
   scope :old, -> { order(created_at: :asc) }  #asc = 昇順
+  scope :order_by_favorite_count, -> do
+  sql = <<~SQL
+    LEFT OUTER JOIN (
+      SELECT f.post_relax_id, COUNT(*) AS cnt
+      FROM favorites f
+      GROUP BY f.post_relax_id
+    ) favorite_counts
+    ON favorite_counts.post_relax_id = post_relaxes.id
+  SQL
+  joins(sql)
+    .order(Arel.sql("COALESCE(favorite_counts.cnt, 0) DESC")) # ④
+end
+ scope :reverse_order_by_favorite_count, -> do
+  sql = <<~SQL
+    LEFT OUTER JOIN (
+      SELECT f.post_relax_id, COUNT(*) AS cnt
+      FROM favorites f
+      GROUP BY f.post_relax_id
+    ) favorite_counts
+    ON favorite_counts.post_relax_id = post_relaxes.id
+  SQL
+  joins(sql)
+    .order(Arel.sql("COALESCE(favorite_counts.cnt, 0) ")) # ④
+end
 end

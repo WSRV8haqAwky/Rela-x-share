@@ -17,8 +17,10 @@
             並べ替え
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <%= link_to '新着順', post_relaxes_path(latest: "true"), class:"dropdown-item" %>
-      　　　   <%= link_to '古い順', post_relaxes_path(old: "true"), class:"dropdown-item" %>
+            <%= link_to '新しい順', post_relaxes_path(latest: "true"), class:"dropdown-item mb-0" %>
+            <%= link_to '古い順', post_relaxes_path(old: "true"), class:"dropdown-item" %>
+            <%= link_to 'いいねの多い順', post_relaxes_path(order_by_favorite_count: "true"), class:"dropdown-item" %>
+            <%= link_to 'いいねの少ない順', post_relaxes_path(reverse_order_by_favorite_count: "true"), class:"dropdown-item" %>
           </div>
         </div>
 
