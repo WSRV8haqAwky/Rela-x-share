@@ -4,7 +4,7 @@
     <% if @range == "User" %>
       <div class="row">
         <% @users.each do |user| %>
-          <div class="col-lg-5 offset-lg-2 mb-5">
+          <div class="col-lg-6 mb-5">
             <div class="card mx-auto shadow-lg h-100">
               <div class="card-body">
                 <div class="row">
@@ -29,7 +29,7 @@
     <% else %>
       <div class="row">
         <% @post_relaxes.each do |post_relax| %>
-          <div class="col-lg-6  mb-5">
+          <div class="col-lg-6 mb-5">
             <div class="card mx-auto shadow-lg h-100">
               <%= attachment_image_tag post_relax, :image, class:"card-img-top",fallback: "default-image.jpg"; %>
                 <div class="card-body">
@@ -41,6 +41,8 @@
                       <p class="card-text"><%= link_to post_relax.caption, post_relax_path(post_relax.id),class:"text-dark" %></p>
                       <span><i class="fas fa-user"></i><%= post_relax.user.name %> ｜ </span>
                       <span><%= "#{post_relax.post_comments.count} コメント" %></span>
+                      <span><i class="far fa-star"></i> <%=  post_relax.favorites.count %></span>
+                      <p class="text-secondary"><%= post_relax.created_at.strftime('%Y/%m/%d %R') %> 投稿</p>
                     </div>
                   </div>
                 </div>
