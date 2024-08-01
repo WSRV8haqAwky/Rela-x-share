@@ -1,11 +1,11 @@
 <main>
     <div class='container'>
       <div class='row'>
-        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <div class="col-lg-10 px-5 px-sm-0 mx-auto">
          <h2 class="pt-3">プロフィール編集</h2>
           <% if @user.errors.any? %>
             <div id="error explanation">
-              <h3><%= @user.errors.count %> errors prohibited this obj from being saved:</h3>
+              <h2><%= @user.errors.count %> 件のエラーが発生しました</h2>
                 <ul>
                   <% @user.errors.full_messages.each do |message| %>
                     <li><%= message %></li>
