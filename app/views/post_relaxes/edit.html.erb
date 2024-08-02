@@ -24,6 +24,13 @@
            <label for="post-caption">説明</label>
            <%= f.text_area :caption, class: "form-control" %>
           </div>
+          <div class="form-group mt-3 mb-3">
+            <label for="tag_names">タグ名</label>
+            <%= f.text_area :tag_names,
+            class: 'tag-input form-control',
+            value: @post_relax.tags.map(&:name).join("\n"),
+            rows: 2 %>
+          </div>
           <div class="form-group">
            <%= f.submit "更新", class:"btn btn-success",style:"opacity: 0.8;" %>
           </div>
