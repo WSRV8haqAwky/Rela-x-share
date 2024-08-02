@@ -3,6 +3,8 @@ class PostRelax < ApplicationRecord
   attachment :image
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :post_relax_tags, dependent: :destroy
+  has_many :tags, through: :post_relax_tags
 
   validates :caption, presence: true, length: { maximum: 200 }
 
@@ -58,4 +60,6 @@ end
   joins(sql)
     .order(Arel.sql("COALESCE(favorite_counts.cnt, 0) ")) # ④
 end
+
+
 end

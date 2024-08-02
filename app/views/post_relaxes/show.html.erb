@@ -37,6 +37,10 @@
                       <b><%= @post_relax.user.name %></b></span>
                     <% end %>
                     <p class="card-text"><%= @post_relax.caption %></p>
+                    <% if @post_relax.tags.present? %>
+                      <%= render 'post_relaxes/tags', post_relax: @post_relax %>
+                    <% end %>
+
                   </div>
                 </div>
               </div>

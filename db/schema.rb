@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_17_061708) do
+ActiveRecord::Schema.define(version: 2024_08_02_060211) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
@@ -47,6 +47,15 @@ ActiveRecord::Schema.define(version: 2024_07_17_061708) do
     t.integer "post_relax_id"
   end
 
+  create_table "post_relax_tags", force: :cascade do |t|
+    t.integer "post_relax_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_relax_id"], name: "index_post_relax_tags_on_post_relax_id"
+    t.index ["tag_id"], name: "index_post_relax_tags_on_tag_id"
+  end
+
   create_table "post_relaxes", force: :cascade do |t|
     t.string "image_id"
     t.text "caption"
@@ -67,6 +76,12 @@ ActiveRecord::Schema.define(version: 2024_07_17_061708) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
