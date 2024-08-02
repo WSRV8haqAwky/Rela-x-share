@@ -15,9 +15,10 @@
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
+//= require turbolinks
 //= require_tree .
 
-$(function(){
+jQuery(document).on('turbolinks:load',function(){
     $(".js-modalWindow").click(function(){
         $("body").append("<div class='overlay'></div>");
         $(".overlay").fadeIn(300);
