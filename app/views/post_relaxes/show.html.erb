@@ -1,6 +1,6 @@
  <main>
   <div class='container px-5 px-sm-0'>
-
+    <% breadcrumb :post_relax, @user , @post_relax %>
     <% flash.each do |message_type, message| %>
 　  　<div class="alert alert-<%= message_type %> alert-success">
 　  　  <%= message %>

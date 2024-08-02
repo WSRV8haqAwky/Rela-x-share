@@ -12,9 +12,10 @@
 
   <body class="d-flex flex-column vh-100">
     <%= render 'layouts/header' %>
+
     <main class="mb-auto">
       <%= render 'layouts/search' %>
-
+      <%= breadcrumbs separator: " &rsaquo; " %>
       <%= yield %>
     </main>
     <%= render 'layouts/footer' %>

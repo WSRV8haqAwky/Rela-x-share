@@ -109,6 +109,9 @@ GEM
       sassc (>= 1.11)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    gretel (5.0.0)
+      actionview (>= 5.1, < 7.2)
+      railties (>= 5.1, < 7.2)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -320,6 +323,7 @@ DEPENDENCIES
   factory_bot_rails (= 6.2.0)
   faker
   font-awesome-sass (~> 5.13)
+  gretel
   jbuilder (~> 2.5)
   jquery-rails
   kaminari (~> 1.2.1)
